@@ -3,34 +3,33 @@ import Logo from "@/components/core/logo/index";
 import SwipeCard from "@/components/tinder/card/index";
 import { Profiles } from "@/data/profiles";
 import Image from "next/image";
-import { Key, useState } from "react";
+import {  useState } from "react";
 
 const App = () => {
   const [users, setUsers] = useState(Profiles);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleSwipe = () => {
-    if (currentIndex < users.length - 1) {
-      setCurrentIndex(currentIndex + 1); // Move to the next card
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < users.length) {
+      setCurrentIndex(nextIndex);
     } else {
-      // No more cards to display, fetch more 
-      setUsers(Profiles);
-      setCurrentIndex(0);
-      console.log("Fetch more profile.");
+      console.log("Fetch more.");
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      {users.length > 0 && currentIndex < users.length && (
+    <div className="flex flex-col items-center justify-center h-screen relative">
+      {users.slice(currentIndex, currentIndex + 2).reverse().map((user, index) => (
         <SwipeCard
-          key={users[currentIndex].id}
-          name={users[currentIndex].name}
-          age={users[currentIndex].age}
-          bio={users[currentIndex].bio}
+          key={user.id}
+          name={user.name}
+          age={user.age}
+          bio={user.bio}
           onSwipe={handleSwipe}
+          zIndex={index}
         />
-      )}
+      ))}
     </div>
   );
 };
