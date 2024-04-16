@@ -4,12 +4,14 @@ import { motion, useMotionValue, useTransform } from 'framer-motion';
 interface SwipeCardProps {
   name: string;
   age: number;
-  bio: string;
+  address: string;
+  distance: string;
+  image: string;
   onSwipe: () => void;
   zIndex: number;
 }
 
-const SwipeCard: React.FC<SwipeCardProps> = ({ name, age, bio, onSwipe, zIndex }) => {
+const SwipeCard: React.FC<SwipeCardProps> = ({ name, age, address, distance,image, onSwipe, zIndex }) => {
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-100, 100], [-20, 20]); // Adjust these values as needed
   const likeOpacity = useTransform(x, [50, 100], [0, 1]);
@@ -39,12 +41,17 @@ const SwipeCard: React.FC<SwipeCardProps> = ({ name, age, bio, onSwipe, zIndex }
       whileDrag={{ scale: 1.1 }}
     >
       <div className="p-4 relative">
-        <img src={'/assets/images/avatar.png'} alt={name} width={300} height={600} draggable="false" />
-        <motion.div className="absolute top-10 left-8  border-4 rounded-md border-red" 
+        <div className='absolute bottom-8 left-8'>
+            <p className='text-white font-medium text-xl'>{name}, {age}</p>
+            <p className='text-white font-light text-sm'>{address}</p>
+            <p className='text-white font-light text-sm'>{distance} miles away</p>
+        </div>
+        <img src={`/assets/images/${image}`} alt={name} width={300} height={600} draggable="false" />
+        <motion.div className="absolute top-10 right-10  border-4 rounded-md border-red" 
           style={{ opacity: nopeOpacity }}>
             <span className='text-red mx-4 text-3xl'>Nope</span> 
         </motion.div>
-        <motion.div className="absolute top-10 right-8  border-4 rounded-md border-green" 
+        <motion.div className="absolute top-10 left-10  border-4 rounded-md border-green" 
           style={{ opacity: likeOpacity }}>
             <span className='text-green mx-4 text-3xl'>Like</span> 
         </motion.div>

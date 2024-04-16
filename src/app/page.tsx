@@ -14,6 +14,8 @@ const App = () => {
     if (nextIndex < users.length) {
       setCurrentIndex(nextIndex);
     } else {
+      setUsers(Profiles);
+      setCurrentIndex(0);
       console.log("Fetch more.");
     }
   };
@@ -25,10 +27,11 @@ const App = () => {
           key={user.id}
           name={user.name}
           age={user.age}
-          bio={user.bio}
+          distance={user.distance}
+          address={user.address}
           onSwipe={handleSwipe}
-          zIndex={index}
-        />
+          zIndex={index} 
+          image={user.image}        />
       ))}
     </div>
   );
