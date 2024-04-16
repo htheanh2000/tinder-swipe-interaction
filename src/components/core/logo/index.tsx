@@ -4,7 +4,7 @@ import Link from "next/link"
 const Logo:React.FC = () => {
     return (
         <Link href={'/'} className="cursor-pointer mx-auto">
-            <Image width={48} height={48} src="/assets/images/logo.png" alt="logo" />
+            <Image width={32} height={32} src="/assets/images/logo.png" alt="logo" />
         </Link>
     )
 }

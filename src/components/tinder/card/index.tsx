@@ -9,11 +9,12 @@ interface SwipeCardProps {
   image: string;
   onSwipe: () => void;
   zIndex: number;
+  scale: number; 
 }
 
-const SwipeCard: React.FC<SwipeCardProps> = ({ name, age, address, distance,image, onSwipe, zIndex }) => {
+const SwipeCard: React.FC<SwipeCardProps> = ({ name, age, address, distance,image, onSwipe, zIndex,scale }) => {
   const x = useMotionValue(0);
-  const rotate = useTransform(x, [-100, 100], [-20, 20]); // Adjust these values as needed
+  const rotate = useTransform(x, [-100, 100], [-10, 10]);
   const likeOpacity = useTransform(x, [50, 100], [0, 1]);
   const nopeOpacity = useTransform(x, [-100, -50], [1, 0]);
 
@@ -34,7 +35,7 @@ const SwipeCard: React.FC<SwipeCardProps> = ({ name, age, address, distance,imag
 
       }}
       className="bg-white max-w-sm mx-auto rounded-2xl shadow-lg overflow-hidden absolute"
-      style={{ x, rotate, zIndex}}
+      style={{ x, rotate, zIndex, scale}}
       initial={{ scale: 0.95 }}
       animate={{ scale: 1 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}

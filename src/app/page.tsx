@@ -33,7 +33,8 @@ const App = () => {
             address={user.address}
             onSwipe={handleSwipe}
             zIndex={index}
-            image={user.image} />
+            image={user.image} 
+            scale={index === 0 ? 1 : 0.5}  />
         ))}
       </div>
 
