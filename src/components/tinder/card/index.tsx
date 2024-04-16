@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
-
+import Image from 'next/image' ;
 interface SwipeCardProps {
   name: string;
   age: number;
@@ -33,25 +33,25 @@ const SwipeCard: React.FC<SwipeCardProps> = ({ name, age, address, distance,imag
         x.set(0); // Reset position after drag ends
 
       }}
-      className="bg-white max-w-sm mx-auto rounded-lg shadow-lg overflow-hidden absolute"
+      className="bg-white max-w-sm mx-auto rounded-2xl shadow-lg overflow-hidden absolute"
       style={{ x, rotate, zIndex}}
       initial={{ scale: 0.95 }}
       animate={{ scale: 1 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
       whileDrag={{ scale: 1.1 }}
     >
-      <div className="p-4 relative">
-        <div className='absolute bottom-8 left-8'>
-            <p className='text-white font-medium text-xl'>{name}, {age}</p>
-            <p className='text-white font-light text-sm'>{address}</p>
-            <p className='text-white font-light text-sm'>{distance} miles away</p>
+      <div className="relative">
+        <div className='absolute bottom-4 left-4'>
+            <p className='text-white font-medium text-2xl'>{name}, {age}</p>
+            <p className='text-white  text-sm'>{address}</p>
+            <p className='text-white  text-sm'>{distance} miles away</p>
         </div>
-        <img src={`/assets/images/${image}`} alt={name} width={300} height={600} draggable="false" />
-        <motion.div className="absolute top-10 right-10  border-4 rounded-md border-red" 
+        <Image src={`/assets/images/${image}`} alt={name} width={300} height={600} draggable="false" />
+        <motion.div className="absolute top-4 right-4  border-4 rounded-md border-red" 
           style={{ opacity: nopeOpacity }}>
             <span className='text-red mx-4 text-3xl'>Nope</span> 
         </motion.div>
-        <motion.div className="absolute top-10 left-10  border-4 rounded-md border-green" 
+        <motion.div className="absolute top-4 left-4  border-4 rounded-md border-green" 
           style={{ opacity: likeOpacity }}>
             <span className='text-green mx-4 text-3xl'>Like</span> 
         </motion.div>
