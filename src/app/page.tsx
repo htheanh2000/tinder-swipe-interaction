@@ -4,11 +4,12 @@ import SwipeCard from "@/components/tinder/card/index";
 import { Profiles } from "@/data/profiles";
 import Image from "next/image";
 import { useState } from "react";
+import useLockBodyScroll from '@/hooks/useLockBodyScroll';
 
 const App = () => {
   const [users, setUsers] = useState(Profiles);
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  useLockBodyScroll()
   const handleSwipe = () => {
     const nextIndex = currentIndex + 1;
     if (nextIndex < users.length) {
